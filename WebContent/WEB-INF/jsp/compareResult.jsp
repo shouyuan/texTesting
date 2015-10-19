@@ -1,13 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-<html>  
-    <head>  
-        <title>Result</title>  
-    </head>  
-    <body>  
-        <h1><c:out value="${output}"></c:out></h1>  
-        <h1>Successfully fill in the 1040 nr-ez</h1>
-    </body>  
-</html> 
+<%@ page language="java" import="java.util.*,java.io.*"
+pageEncoding="ISO-8859-1"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://"
+    + request.getServerName() + ":" + request.getServerPort()
+    + path + "/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <base href="<%=basePath%>">
+</head>
+<%
+   out.clear();
+   out = pageContext.pushBody();
+   response.setContentType("application/pdf");
+
+   try {
+    String strPdfPath = new String("C:/Users/Sharon/workspace/texTesting/f1040nre2.pdf");
+    File file = new File(strPdfPath);
+    if (file.exists()) {
+     DataOutputStream temps = new DataOutputStream(response
+       .getOutputStream());
+     DataInputStream in = new DataInputStream(
+       new FileInputStream(strPdfPath));
+
+     byte[] b = new byte[2048];
+     while ((in.read(b)) != -1) {
+      temps.write(b);
+      temps.flush();
+     }
+
+     in.close();
+     temps.close();
+    } else {
+     out.print(strPdfPath + "pdf not existing");
+    }
+
+   } catch (Exception e) {
+    out.println(e.getMessage());
+   }
+%>
+<body>
+   <br>
+</body>
+</html>

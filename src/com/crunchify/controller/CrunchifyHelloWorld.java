@@ -57,26 +57,28 @@ public class CrunchifyHelloWorld {
 	        
 	        try {
 	        	Document document = new Document();
-				PdfWriter.getInstance(document, new FileOutputStream("/usr/local/createSamplePDF.pdf"));
-				FileOutputStream fos = new FileOutputStream("/usr/local/createSamplePDF.pdf");
-				int index = 1; // 表格序号  
-	            int page = 2;// 总共页数
+	        
+	    		int index = 1; 
+	            int page = 2;
 				ByteArrayOutputStream baos[] = new ByteArrayOutputStream[page];
-				String TemplatePDF ="/usr/local/f1040nre.pdf";
-				PdfReader reader = new PdfReader(TemplatePDF);
-				PdfStamper stamp = new PdfStamper(reader,fos);   
+				//String TemplatePDF ="f1040nre.pdf";
+				Document aaa =new Document();
+				PdfReader reader = new PdfReader("C:/Users/Sharon/workspace/texTesting/f1040nre.pdf");
+				PdfStamper stamp = new PdfStamper(reader,new FileOutputStream(  
+	    	            "C:/Users/Sharon/workspace/texTesting/f1040nre2.pdf")); 
 				AcroFields form = stamp.getAcroFields();
 				 Map<String, Item> fieldMap = form.getFields();
+				 int i=0;
 				 for (Entry<String, Item> entry : fieldMap.entrySet()) {  
-				        String name = entry.getKey(); // name就是pdf模版中各个文本域的名字  
+				        String name = entry.getKey();  
 				        Item item = (Item) entry.getValue();  
-				        System.out.println("[name]:" + name + ", [value]: " + item);  
+				        System.out.println("[name]:" + name + ", [type]: " + form.getFieldType(name));  
+				        form.setField(name, i+++"");  
 				    } 
-				 form.setField("f1_01_0_", input1);  
-				    form.setField("f1_02_0_", input2);  
-				    form.setField("f1_05_0_", "我是联系人123");  
+				 
+				   
 				  
-				    stamp.setFormFlattening(true); // 这句不能少 
+				    stamp.setFormFlattening(true); 
 				    stamp.close();
 				    reader.close();
 	        document.open(); 
@@ -86,6 +88,7 @@ public class CrunchifyHelloWorld {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	        
 	       
 	        
 	        return "compareResult";  

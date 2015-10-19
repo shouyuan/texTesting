@@ -1,11 +1,6 @@
 <html>
 <head>
 <title>welcome</title>
-<style type="text/css">
-body {
-	background-image: url('http://crunchify.com/bg.png');
-}
-</style>
 </head>
 <body>${message} 
         <h1>Hello welcome.jsp!</h1>  
@@ -21,5 +16,6 @@ body {
 			href='http://crunchify.com/category/spring-mvc/' target='_blank'>here</a>
 		for all Spring MVC, Web Development examples.<br>
 	</div>
+	
 </body>
 </html>
