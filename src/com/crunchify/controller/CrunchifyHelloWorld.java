@@ -35,14 +35,7 @@ public class CrunchifyHelloWorld {
 	 @Autowired  
 	    Comparator<String> comparator;
 	
-	@RequestMapping("/")
-	public String helloWorld() {
- 
-		String message = "<br><div style='text-align:center;'>"
-				+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
-	//	return new ModelAndView("welcome", "message", message);
-		return "welcome";
-	}
+	
 	
 	  @RequestMapping(value = "/welcome", method = RequestMethod.POST)
 	  public String compare(@RequestParam("input1") String input1,  

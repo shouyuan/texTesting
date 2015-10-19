@@ -1,48 +1,27 @@
-<%@ page language="java" import="java.util.*,java.io.*"
-pageEncoding="ISO-8859-1"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme() + "://"
-    + request.getServerName() + ":" + request.getServerPort()
-    + path + "/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-   <base href="<%=basePath%>">
-</head>
-<%
-   out.clear();
-   out = pageContext.pushBody();
-   response.setContentType("application/pdf");
-
-   try {
-    String strPdfPath = new String("C:/Users/Sharon/workspace/texTesting/f1040nre2.pdf");
-    File file = new File(strPdfPath);
-    if (file.exists()) {
-     DataOutputStream temps = new DataOutputStream(response
-       .getOutputStream());
-     DataInputStream in = new DataInputStream(
-       new FileInputStream(strPdfPath));
-
-     byte[] b = new byte[2048];
-     while ((in.read(b)) != -1) {
-      temps.write(b);
-      temps.flush();
-     }
-
-     in.close();
-     temps.close();
-    } else {
-     out.print(strPdfPath + "pdf not existing");
-    }
-
-   } catch (Exception e) {
-    out.println(e.getMessage());
-   }
-%>
-<body>
-   <br>
-</body>
-</html>
+<HTML>  
+    <HEAD>  
+        <META http-equiv="Content-Type" content="text/html; charset=gb2312">  
+        <META http-equiv="Content-Style-Type" content="text/css">  
+        <META http-equiv="Content-Script-Type" content="text/javascript">  
+        <TITLE>Checking if Acrobat Reader installed (IE4+)...</TITLE>  
+       
+    </HEAD>  
+    <BODY>  
+        
+   <DIV id=showdiv  
+style="Z-INDEX: 0; LEFT:10px; WIDTH: 990px; POSITION: absolute; TOP: -8px; HEIGHT: 10px">  
+<object classid="clsid:CA8A9780-280D-11CF-A24D-444553540000" width="990" height="700" border="0" top="-10" name="pdf">   
+<param name="toolbar" value="false">  
+<param name="_Version" value="65539">  
+  
+<param name="_ExtentX" value="20108">  
+  
+<param name="_ExtentY" value="10866">  
+  
+<param name="_StockProps" value="0">  
+  
+<param name="SRC" value="C:/Users/Sharon/workspace/texTesting/f1040nre.pdf">  
+</object>  
+</DIV>  
+</BODY>  
+</HTML>  
